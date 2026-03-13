@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
+
 
 function CreateEmployee() {
 
@@ -38,6 +40,8 @@ function CreateEmployee() {
   return (
     <div>
       <h2>Create Employee</h2>
+
+      <Link to="/employees">View Current Employees</Link>
 
       <form onSubmit={handleSubmit}>
 
@@ -111,7 +115,9 @@ function CreateEmployee() {
       </form>
 
     </div>
+    
   )
 }
 
 export default CreateEmployee
+

@@ -1,14 +1,20 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import Input from "../components/Form/Input"
+import DatePickerField from "../components/Form/DatePickerField"
+import Modal from "../components/Modal/Modal"
 
 
 function CreateEmployee() {
 
+  const [dateOfBirth, setDateOfBirth] = useState(null)
+  const [startDate, setStartDate] = useState(null)
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    dateOfBirth: "",
-    startDate: "",
     street: "",
     city: "",
     state: "",
@@ -30,92 +36,100 @@ function CreateEmployee() {
 
     const employees = JSON.parse(localStorage.getItem("employees")) || []
 
-  employees.push(formData)
+    const newEmployee = {
+      ...formData,
+      dateOfBirth: dateOfBirth,
+      startDate: startDate
+    }
 
-  localStorage.setItem("employees", JSON.stringify(employees))
+    employees.push(newEmployee)
 
-  console.log("Employee saved :", formData)
+    localStorage.setItem("employees", JSON.stringify(employees))
+
+    console.log("Employee saved :", newEmployee)
+
+    setIsModalOpen(true)
   }
 
   return (
     <div>
-      <h2>Create Employee</h2>
+      <div>
+        <h2>Create Employee</h2>
 
-      <Link to="/employees">View Current Employees</Link>
+        <Link to="/employees">View Current Employees</Link>
 
-      <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
 
-        <label>First Name</label>
-        <input
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-        />
+          <Input
+            label="First Name"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+          />
 
-        <label>Last Name</label>
-        <input
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-        />
+          <Input
+            label="Last Name"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
 
-        <label>Date of Birth</label>
-        <input
-          type="date"
-          name="dateOfBirth"
-          value={formData.dateOfBirth}
-          onChange={handleChange}
-        />
 
-        <label>Start Date</label>
-        <input
-          type="date"
-          name="startDate"
-          value={formData.startDate}
-          onChange={handleChange}
-        />
+          <DatePickerField
+            label="Date of Birth"
+            selected={dateOfBirth}
+            onChange={setDateOfBirth}
+          />
 
-        <label>Street</label>
-        <input
-          name="street"
-          value={formData.street}
-          onChange={handleChange}
-        />
+          <DatePickerField
+            label="Start Date"
+            selected={startDate}
+            onChange={setStartDate}
+          />
 
-        <label>City</label>
-        <input
-          name="city"
-          value={formData.city}
-          onChange={handleChange}
-        />
+          <Input
+            label="Street"
+            name="street"
+            value={formData.street}
+            onChange={handleChange}
+          />
 
-        <label>State</label>
-        <input
-          name="state"
-          value={formData.state}
-          onChange={handleChange}
-        />
+          <Input
+            label="City"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+          />
 
-        <label>Zip Code</label>
-        <input
-          name="zipCode"
-          value={formData.zipCode}
-          onChange={handleChange}
-        />
+          <Input
+            label="State"
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+          />
 
-        <label>Department</label>
-        <input
-          name="department"
-          value={formData.department}
-          onChange={handleChange}
-        />
+          <Input
+            label="Zip Code"
+            name="zipCode"
+            value={formData.zipCode}
+            onChange={handleChange}
+          />
 
-        <button type="submit">Save</button>
+          <Input
+            label="Department"
+            name="department"
+            value={formData.department}
+            onChange={handleChange}
+          />
+          <button type="submit">Save</button>
 
-      </form>
+        </form>
 
+      </div>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <p>Employee Created!2</p>
+      </Modal>
     </div>
-    
   )
 }
 

@@ -2,11 +2,26 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import Input from "../components/Form/Input"
 import DatePickerField from "../components/Form/DatePickerField"
+import Select from "../components/Form/Select"
 import Modal from "../components/Modal/Modal"
+import { states } from "../data/states"
+import { departments } from "../data/departments"
 
 
 function CreateEmployee() {
 
+  const statesOptions = states.map((state) => ({
+    value: state.abbreviation,
+    label: state.name
+  }))
+
+  const departmentOptions = departments.map((department) => ({
+    value: department.name,
+    label: department.name
+  }))
+
+  const [selectedState, setSelectedState] = useState(null)
+  const [selectedDepartment, setSelectedDepartment] = useState(null)
   const [dateOfBirth, setDateOfBirth] = useState(null)
   const [startDate, setStartDate] = useState(null)
 
@@ -101,11 +116,18 @@ function CreateEmployee() {
             onChange={handleChange}
           />
 
-          <Input
-            label="State"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
+          <Select
+            options={statesOptions}
+            value={selectedState}
+            onChange={(option) => {
+              setSelectedState(option)
+
+              setFormData({
+                ...formData,
+                state: option.value
+              })
+            }}
+            placeholder="Select a state"
           />
 
           <Input
@@ -115,11 +137,18 @@ function CreateEmployee() {
             onChange={handleChange}
           />
 
-          <Input
-            label="Department"
-            name="department"
-            value={formData.department}
-            onChange={handleChange}
+          <Select
+            options={departmentOptions}
+            value={selectedDepartment}
+            onChange={(option) => {
+              setSelectedDepartment(option)
+
+              setFormData({
+                ...formData,
+                department: option.value
+              })
+            }}
+            placeholder="Select a department"
           />
           <button type="submit">Save</button>
 

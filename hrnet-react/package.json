@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "halaiks-react-select": "^1.0.1",
     "react": "^19.2.0",
     "react-data-table-component": "^7.7.1",
     "react-datepicker": "^9.1.0",

@@ -5,7 +5,7 @@ function Modal({ isOpen, onClose, children }) {
     <div style={overlayStyle}>
       <div style={modalStyle}>
         {children}
-        <button onClick={onClose}>Close</button>
+        <button className="submit-button" onClick={onClose}>Close</button>
       </div>
     </div>
   )

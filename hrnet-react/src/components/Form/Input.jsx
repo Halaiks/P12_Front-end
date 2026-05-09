@@ -1,9 +1,8 @@
 function Input({ label, name, value, onChange, type = "text" }) {
   return (
-    <div style={{ marginBottom: "10px" }}>
-      <label>{label}</label>
-      <br />
-      <input
+<div className="form-group">
+        <label>{label}</label>
+      <input className="form-input"
         type={type}
         name={name}
         value={value}

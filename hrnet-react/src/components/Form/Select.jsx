@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react"
-function Select({ options, value, onChange, placeholder }) {
+function Select({ label, options, value, onChange, placeholder }) {
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -67,28 +67,34 @@ const handleSelect = useCallback((option) => {
 
 
   return (
-    <div style={containerStyle} ref={selectRef}>
+    <div className="form-group">
+    <label>{label}</label>
 
-        <div
+    <div className="custom-select-container" ref={selectRef}>
+
+        <div className="custom-select"
   style={selectStyle}
   onClick={() => {
     setIsOpen((prev) => !prev)
     setHighlightedIndex(0)
-  }}
->    
-        {value ? value.label : placeholder}
+  }}>    
+        <div className="select-content">
+  <span>{value ? value.label : placeholder}</span>
+<span className={`select-arrow ${isOpen ? "open" : ""}`}>
+  ▼
+</span>
+</div>
       </div>
 
       {isOpen && (
-        <ul style={dropdownStyle}>
+        <ul className="custom-dropdown">
             {options.map((option, index) => (
             <li
             ref={(el) => (optionRefs.current[index] = el)}
               key={option.value}
-                style={{
-                ...optionStyle,
-                backgroundColor: index === highlightedIndex ? "#f0f0f0" : "white"
-                }}
+                className={`custom-option ${
+  index === highlightedIndex ? "active" : ""
+}`}
               onClick={() => handleSelect(option)}
             >
               {option.label}
@@ -98,40 +104,17 @@ const handleSelect = useCallback((option) => {
       )}
 
     </div>
+    </div>
   )
 }
 
-const containerStyle = {
-  position: "relative",
-  width: "200px",
-  marginBottom: "10px"
-}
+
 
 const selectStyle = {
   border: "1px solid #ccc",
   padding: "10px",
   cursor: "pointer",
   backgroundColor: "white"
-}
-
-const dropdownStyle = {
-  position: "absolute",
-  top: "100%",
-  left: 0,
-  right: 0,
-  border: "1px solid #ccc",
-  backgroundColor: "white",
-  listStyle: "none",
-  padding: 0,
-  margin: 0,
-  maxHeight: "200px",
-  overflowY: "auto",
-  zIndex: 1000
-}
-
-const optionStyle = {
-  padding: "10px",
-  cursor: "pointer"
 }
 
 export default Select

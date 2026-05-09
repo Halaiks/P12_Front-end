@@ -67,11 +67,12 @@ function CreateEmployee() {
   }
 
   return (
-    <div>
+    <div className="form-container">
+    <div className="page-container">
       <div>
-        <h2>Create Employee</h2>
+        <h2 className="page-title">Create Employee</h2>
 
-        <Link to="/employees">View Current Employees</Link>
+        <Link className="page-link" to="/employees">View Current Employees</Link>
 
         <form onSubmit={handleSubmit}>
 
@@ -117,7 +118,8 @@ function CreateEmployee() {
           />
 
           <Select
-            options={statesOptions}
+            label="State"
+          options={statesOptions}
             value={selectedState}
             onChange={(option) => {
               setSelectedState(option)
@@ -138,6 +140,7 @@ function CreateEmployee() {
           />
 
           <Select
+            label="Department"
             options={departmentOptions}
             value={selectedDepartment}
             onChange={(option) => {
@@ -150,14 +153,15 @@ function CreateEmployee() {
             }}
             placeholder="Select a department"
           />
-          <button type="submit">Save</button>
+          <button className="submit-button" type="submit">Save</button>
 
         </form>
 
       </div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <p>Employee Created!2</p>
+        <p>Employee Created!</p>
       </Modal>
+    </div>
     </div>
   )
 }

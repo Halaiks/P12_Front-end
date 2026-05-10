@@ -1,11 +1,12 @@
 import DatePicker from "react-datepicker"
 
-function DatePickerField({ label, selected, onChange }) {
+function DatePickerField({ id, label, selected, onChange }) {
   return (
-<div className="form-group">
-        <label>{label}</label>
+    <div className="form-group">
+      <label htmlFor={id}>{label}</label>
       <DatePicker
-      className="form-input"
+        id={id}
+        className="form-input"
         selected={selected}
         onChange={onChange}
         dateFormat="MM/dd/yyyy"

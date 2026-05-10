@@ -91,12 +91,14 @@ function CreateEmployee() {
 
 
           <DatePickerField
+            id="dateOfBirth"
             label="Date of Birth"
             selected={dateOfBirth}
             onChange={setDateOfBirth}
           />
 
           <DatePickerField
+            id="startDate"
             label="Start Date"
             selected={startDate}
             onChange={setStartDate}

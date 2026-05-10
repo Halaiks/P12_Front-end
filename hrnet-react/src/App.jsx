@@ -5,10 +5,12 @@ import EmployeeList from "./pages/EmployeeList"
 function App() {
   return (
     <BrowserRouter>
+    <main>
       <Routes>
         <Route path="/" element={<CreateEmployee />} />
         <Route path="/employees" element={<EmployeeList />} />
       </Routes>
+      </main>
     </BrowserRouter>
   )
 }

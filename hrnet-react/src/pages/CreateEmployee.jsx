@@ -62,8 +62,6 @@ function CreateEmployee() {
 
     localStorage.setItem("employees", JSON.stringify(employees))
 
-    console.log("Employee saved :", newEmployee)
-
     setIsModalOpen(true)
   }
 

@@ -15,7 +15,7 @@ import { addEmployee } from "../store/employeesSlice"
 
 function CreateEmployee() {
   const dispatch = useDispatch()
-// Transformation des données pour les composants Select
+  // Transformation des données pour les composants Select
   const statesOptions = states.map((state) => ({
     value: state.abbreviation,
     label: state.name
@@ -39,7 +39,7 @@ function CreateEmployee() {
     zipCode: "",
     department: ""
   })
-// Gestion des changements dans les champs de formulaire
+  // Gestion des changements dans les champs de formulaire
   const handleChange = (e) => {
     const { name, value } = e.target
 
@@ -48,16 +48,16 @@ function CreateEmployee() {
       [name]: value
     })
   }
-// Gestion de la soumission du formulaire
+  // Gestion de la soumission du formulaire
   const handleSubmit = (e) => {
     e.preventDefault()
-// Création du nouvel employé avec les données du formulaire
+    // Création du nouvel employé avec les données du formulaire
     const newEmployee = {
       ...formData,
-      dateOfBirth: dateOfBirth,
-      startDate: startDate
+      dateOfBirth: dateOfBirth ? dateOfBirth.toISOString() : null,
+      startDate: startDate ? startDate.toISOString() : null,
     }
-// Ajout du nouvel employé à la liste
+    // Ajout du nouvel employé à la liste
     dispatch(addEmployee(newEmployee))
     setIsModalOpen(true)
   }

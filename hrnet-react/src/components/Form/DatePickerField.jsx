@@ -1,5 +1,5 @@
 import DatePicker from "react-datepicker"
-
+// Composant réutilisable pour les champs de date, utilise react-datepicker pour une sélection facile des dates.
 function DatePickerField({ id, label, selected, onChange }) {
   return (
     <div className="form-group">

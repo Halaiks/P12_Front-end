@@ -1,3 +1,5 @@
+// Composant de modal générique, affiche un overlay avec un contenu centré, utilisé pour afficher des messages ou des formulaires dans une fenêtre modale.
+// Retour anticipé (early return) pour éviter de rendre le composant si la modal n'est pas ouverte (isOpen est false).
 function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null
 
